@@ -10,6 +10,13 @@ with st.sidebar:
     vindmøller_km2 = st.slider('Vindmøller km2', 0, 200, 0)  # min: 0h, max: 23h, default: 17h
     batterier_km2 = st.slider('Batterier km2', 0, 100, 0)  # min: 0h, max: 23h, default: 17h
 
+
+col1, col2, col3 = st.columns(3)
+col1.metric("Årlig Production", "0 GWh", "")
+col2.metric("Årligt forbrug", "34316 GWh", "")
+col3.metric("Dækning", "0%", "")
+
+
 df = pd.DataFrame(
    np.random.randn(1000, 2) / [50, 50] + [55.76, 12.4],
    columns=['lat', 'lon'])
