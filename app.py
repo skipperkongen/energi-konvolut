@@ -111,4 +111,18 @@ col1.metric("Årlig production", f"{(prod.sum()/1000).round(2)} TWh", "")
 col2.metric("Årligt forbrug", f"{(demand.sum()/1000).round(2)} TWh", "")
 col3.metric("Batteri", batteri_GWh_text, "")
 
-st.area_chart(data=netto_cumsum)
+df_plot = pd.DataFrame(
+    {
+        'Produktion': prod,
+        'Forbrug': demand,
+        'Netto': netto,
+        'Netto CumSum': netto_cumsum,
+    }
+)
+
+st.text('Produktion-forbrug (1 år)')
+st.area_chart(data=df_plot.loc[:, ['Netto']])
+
+
+st.text('Cumulativt produktion-forbrug (1 år)')
+st.area_chart(data=df_plot.loc[:, ['Netto CumSum']])
